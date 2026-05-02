@@ -1,0 +1,83 @@
+Part 1 — GyanBot System Prompt
+
+System Prompt
+
+Identity:
+You are GyanBot, an AI assistant designed for Indian engineering college students. You help with academic doubt solving, career guidance, and discovering relevant student events.
+
+Tone:
+Communicate in a friendly, calm, and encouraging way. Use simple language, avoid jargon, and break down complex ideas clearly for stressed students.
+
+Boundaries:
+
+Do NOT provide incorrect or made-up technical answers; if unsure, say so clearly.
+Do NOT give harmful, unethical, or illegal advice (e.g., cheating in exams, fake resumes).
+
+Format:
+Always structure answers into 3 sections: Quick Answer → Explanation → Action Steps.
+
+Scope:
+In-scope: engineering subjects, internships, skills, Indian job market, hackathons, student events.
+Out-of-scope: medical/legal advice, personal therapy, non-student-related topics.
+
+Why this boundary matters:
+Avoiding fabricated answers is critical because students rely on GyanBot for learning—wrong concepts can harm academic performance and trust.
+
+Part 2 — C-I-F-C User Prompt (Aryan)
+
+Prompt Aryan should type:
+
+Context:
+I am Aryan, a 3rd-year Computer Science student in India. I know Python, basic machine learning (scikit-learn), and I have good communication skills.
+
+Instruction:
+Help me identify the exact skills I’m missing to get a data science internship by December, and suggest companies or platforms I should target.
+
+Format:
+Give the answer in 3 sections:
+
+Skill gaps (technical + practical)
+Internship strategy (projects + platforms + companies)
+3-month action plan (weekly focus)
+
+Constraints:
+Keep suggestions realistic for Indian students, avoid generic advice, and focus on actionable steps I can follow without expensive courses.
+
+Part 3 — Framework Recommendation
+
+Recommended Framework: LangChain
+
+LangChain is the best fit because it is designed for single-agent workflows with tool integration, especially for use cases like Retrieval-Augmented Generation (RAG). GyanBot needs to fetch data from college FAQs and syllabus PDFs, which LangChain supports via document loaders, vector databases, and retrievers. It also allows structured prompt chaining and fast response generation.
+
+Why not CrewAI?
+CrewAI is optimized for multi-agent collaboration, where different agents debate or divide tasks. GyanBot is a single assistant, so this adds unnecessary complexity and latency.
+
+Why not AutoGen?
+AutoGen focuses on multi-agent conversations and iterative reasoning, which is slower and not ideal when we need fast, single-response outputs for students.
+
+Part 4 — Agent Flow (Career Guidance Feature)
+
+Step 1 — Input (Prompt):
+Student enters details (skills, goals, timeline) using a structured or semi-structured query.
+
+Step 2 — Brain (LLM + System Prompt):
+System prompt activates GyanBot role → LLM interprets intent (career guidance) and extracts key entities (skills, goal, deadline).
+
+Step 3 — Hands (Tool Call – Retrieval):
+LLM triggers a retrieval tool (LangChain retriever) → queries career database containing:
+
+Skill requirements for roles
+Internship listings
+Past student pathways
+
+Step 4 — Brain (Processing + Reasoning):
+LLM compares student profile vs database insights → identifies skill gaps → maps relevant companies/platforms → builds roadmap.
+
+Step 5 — Output (Structured Result):
+Final response shown to student in format:
+
+Skill Gaps: Missing tools (e.g., SQL, Pandas, projects)
+Target Opportunities: Indian startups, LinkedIn, Internshala
+Action Plan: Week-by-week roadmap (projects + applications)
+
+This ensures fast, actionable, and personalized guidance in one response.
